@@ -9,7 +9,7 @@ class NavBar extends Component{
     render(){
         return(
             <>
-                <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
+                <Navbar collapseOnSelect expand="md" bg="dark" variant="dark" >
           <Link to="/">
             <Navbar.Brand>
             <GrAmazon size={32}/>
