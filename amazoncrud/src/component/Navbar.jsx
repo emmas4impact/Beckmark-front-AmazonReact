@@ -1,45 +1,45 @@
 import React, {Component} from 'react';
-import {Navbar} from 'react-bootstrap';
-
+import {Navbar, Nav} from 'react-bootstrap';
+import {GiShoppingCart} from 'react-icons/gi'
+import {GrAmazon} from 'react-icons/gr'
+import {Link, withRouter} from 'react-router-dom';
 
 class NavBar extends Component{
     
     render(){
         return(
             <>
-                <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                    <a className="navbar-brand" href="#">Products</a>
-                    <button
-                        className="navbar-toggler"
-                        type="button"
-                        data-toggle="collapse"
-                        data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation"
-                    >
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav mr-auto">
-                        <li className="nav-item active">
-                            <a className="nav-link" href="#"
-                            >Home <span className="sr-only">(current)</span></a
-                            >
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="backoffice.html">Backoffice</a>
-                        </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <i className="fas fa-cart-plus"><span className="badge badge-light ml-1"> 0</span></i>
-                    
-                    </div>
-                </nav>
-                        
-            
+                <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
+          <Link to="/">
+            <Navbar.Brand>
+            <GrAmazon size={32}/>
+              {this.props.title} Amazon Products
+            </Navbar.Brand>
+          </Link>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="ml-auto">
+              <Link to="/menu"
+                className={
+                  this.props.location.pathname === '/Products'
+                    ? "nav-link active"
+                    : "nav-link"
+                }>
+                Products
+              </Link>
+              <Link to="/backOffice"
+                className={
+                  this.props.location.pathname === '/backOffice'
+                    ? "nav-link active"
+                    : "nav-link"
+                }>
+                BackOffice
+              </Link>
+              <Link to="/location" className="nav-link">Our Location</Link>
+            </Nav>
+            <GiShoppingCart size={32}style={{color: "white"}}/><span className="badge badge-light ml-1"> 0</span>
+          </Navbar.Collapse>
+        </Navbar>
             </>
         )
     }
@@ -47,5 +47,5 @@ class NavBar extends Component{
     
     
 }
-
-export default NavBar;
+//<GiShoppingCart size={32}style={{color: "white"}}/><span className="badge badge-light ml-1"> 0</span>
+export default withRouter(NavBar);
