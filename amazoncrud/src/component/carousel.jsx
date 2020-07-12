@@ -1,8 +1,8 @@
 import React from 'react';
 import Slider from "react-slick";
 import 'pure-react-carousel/dist/react-carousel.es.css';
-import {Container, Image} from 'react-bootstrap'
-import Carousel from "react-multi-carousel";
+import {Container, Image, Row, Col, Carousel} from 'react-bootstrap'
+
 import "react-multi-carousel/lib/styles.css";
  
 export default class extends React.Component {
@@ -54,34 +54,38 @@ export default class extends React.Component {
         }
       };
     return (
+        <Container>
+        <Row className="justify-content-center mt-3">
+            <Col md={12} className="D-flex">
+           
+                        
+                        <Carousel>
+                            {this.state.products.map((product)=>{
+                                return(
+                                    <Carousel.Item key={product._id}>
+                                        <img
+                                        className="d-block w-100 h-25"
+                                        src={product.imageUrl}
+                                        alt={product.name}
+                                        
+                                        />
+                                        <Carousel.Caption>
+                                        <h3>{product.name}</h3>
+                                        <p>{product.description}</p>
+                                        </Carousel.Caption>
+                                    </Carousel.Item>
+                                );
+                            })
+                                
+                            }
+                            
+                          
+                        </Carousel>
         
-            <Carousel
-                swipeable={false}
-                draggable={true}
-                showDots={true}
-                responsive={responsive}
-                ssr={true} // means to render carousel on server-side.
-                infinite={true}
-                autoPlay={this.props.deviceType !== "mobile" ? true : false}
-                autoPlaySpeed={1000}
-                keyBoardControl={true}
-                customTransition="all .5"
-                transitionDuration={500}
-                containerClass="carousel-container"
-                removeArrowOnDeviceType={["tablet", "mobile"]}
-                deviceType={this.props.deviceType}
-                dotListClass="custom-dot-list-style"
-                itemClass="carousel-item-padding-40-px"
-                additionalTransfrom={-20 * 8}
-                >
-                <div>
-                {this.state.products.map(product=>(
-                   <Image src={product.imageUrl} fluid />
-                ))}
-                </div>
-               
-            </Carousel>
-      
+            
+            </Col>
+            </Row>
+        </Container>
     );
   }
 }
