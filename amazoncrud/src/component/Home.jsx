@@ -1,22 +1,31 @@
 import React, {Component} from 'react';
+import ReatDOM from "react-dom";
+import Pagination from "react-js-pagination";
+import {GiShoppingCart} from 'react-icons/gi';
+import ReactStars from "react-rating-stars-component";
 
 
 
 class Home extends Component{
     state={
         products: [],
-        Totalproducts: 0
+        Totalproducts: 0,
+        activePage:3,
+        rate: 0
+        
     }
     
     componentDidMount= async()=>{
         this.fetchUserData()
     }
     
+    
     fetchUserData = async() =>{
         let response = await fetch("http://localhost:3002/products/",{
           method: "GET",
         
     })
+        
     const data = await response.json()
       
     this.setState({
@@ -26,6 +35,26 @@ class Home extends Component{
     console.log(response)
   //this.handleDelete()
   }
+  handlePageChange(pageNumber) {
+    console.log(`active page is ${pageNumber}`);
+    this.setState({activePage: pageNumber});
+  }
+  
+  ratingChanged = async(newRating)=>{
+    let response = await fetch("http://localhost:3002/products/",{
+        method: "GET",
+      
+  })
+      
+  const data = await response.json()
+//   this.setState({
+//       rate: data.reviews.rate
+//   })
+    
+    console.log(newRating)
+}
+    
+    
     render(){
         console.log(this.state.products)
         return(
@@ -43,7 +72,15 @@ class Home extends Component{
                                 <p className="mt-0 mb-3">Description: {products.description}</p>
                                 <p className="mt-0 mb-3">Brand: {products.brand}</p>
                                 <h5 className="mt-0 mb-3">Price: {products.price}€</h5> 
-                                <p><button className="btn btn-dark addorder">Buy Now</button></p>
+                                <p><button className="btn btn-dark addorder">Add to Cart<GiShoppingCart size={32}/></button>  </p>
+                                <p style={{display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center"}}><ReactStars 
+                                count={5}
+                                onChange={this.ratingChanged}
+                                size={24}
+                                isHalf={true}
+                                /></p>
                             </div>
                     </li> 
                         ))}
