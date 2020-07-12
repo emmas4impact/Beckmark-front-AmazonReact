@@ -3,6 +3,7 @@ import ReatDOM from "react-dom";
 import Pagination from "react-js-pagination";
 import {GiShoppingCart} from 'react-icons/gi';
 import ReactStars from "react-rating-stars-component";
+import Carousel from './carousel'
 
 
 
@@ -59,7 +60,9 @@ class Home extends Component{
         console.log(this.state.products)
         return(
             <>
+                
                 <div className="container text-center">
+               
                     <h1>Amazon CRUD PRODUCTS</h1>
                     
                     <ul className="list-unstyled" id='products'>
