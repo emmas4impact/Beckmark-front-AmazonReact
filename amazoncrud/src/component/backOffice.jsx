@@ -76,7 +76,7 @@ class BackOffice extends Component{
             {this.state.errMess}
           </Alert>
         )}
-        <h3>Reserve your table now!</h3>
+        <h3>Add new Products!</h3>
         {
           this.state.isLoading && (
             <div className="d-flex justify-content-center my-5">
