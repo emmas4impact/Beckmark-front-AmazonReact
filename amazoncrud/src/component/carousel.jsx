@@ -64,7 +64,8 @@ export default class extends React.Component {
                                 return(
                                     <Carousel.Item key={product._id}>
                                         <img
-                                        className="d-block w-100 h-25"
+                                        // className="d-block w-100 h-15"
+                                        style={{width: "100%", height: "20rem"}}
                                         src={product.imageUrl}
                                         alt={product.name}
                                         
