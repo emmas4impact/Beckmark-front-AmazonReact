@@ -78,7 +78,7 @@ class Home extends Component{
         console.log(this.state.products)
         return(
             <>
-                
+                < Carousel />
                 <div className="container text-center">
                
                     <h1>{this.state.title}</h1>
